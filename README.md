@@ -1,3 +1,6 @@
+## _Before continuing_
+This is a work in progress project. Some feature are still in progress. Thanks!
+
 ## Stack
 
 - NodeJS
