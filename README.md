@@ -12,6 +12,11 @@ This is a work in progress project. Some feature are still in progress. Thanks!
 - Passport
 - Webpack
 
+## Things I've learned
+- Error handling using middlerare.
+- Using Mongoose Hooks
+- Using Mixins
+
 ## Sample Data
 
 To load sample data, run the following command in your terminal:
