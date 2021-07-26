@@ -13,7 +13,9 @@ This is a work in progress project. Some feature are still in progress. Thanks!
 - Webpack
 
 ## Things I've learned
+- Setting Cookie Parser and sessions
 - Error handling using middlerare.
+- Flash messages
 - Using Mongoose Hooks
 - Using Mixins
 
