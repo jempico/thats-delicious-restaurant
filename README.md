@@ -18,6 +18,7 @@ This is a work in progress project. Some feature are still in progress. Thanks!
 - Flash messages
 - Using Mongoose Hooks
 - Using Mixins
+- Google Maps API Autocomplete
 
 ## Sample Data
 
