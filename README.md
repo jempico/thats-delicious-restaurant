@@ -26,6 +26,7 @@ It touches many of today's application needs such as user authentication, databa
 - Error handling using middlerare.
 - Flash messages
 - Using Mongoose Hooks
+- Uploading/resizing files using Multer and Jimp
 - Webpack Bundling
 - Google Maps API Autocomplete
 
