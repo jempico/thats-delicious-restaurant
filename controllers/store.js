@@ -1,19 +1,4 @@
 const Store = require('../models/Store');
-const multer = require('multer');
-const jimp = require('jimp');
-const uuid = require('uuid');
-
-const multerOptions = {
-    storage: multer.memoryStorage(),
-    fileFilter(req, file, next) {
-        const isPhoto = file.mimetype.startsWith('image/');
-        if(isPhoto) {
-            next(null, true); //passing to next() the first parameter as null and second as true to continue with the process
-        } else {
-            next({ message: 'That filetype isn\'t allowed!'}, false) //passing to next() the first parameter with the error value, and second as false to abort  the process
-        }
-    }
-};
 
 class storeController {
     // Homepage
@@ -54,17 +39,6 @@ class storeController {
     async deleteAll(req,res){
         await Store.deleteAll();
         console.log('All deleted')
-    }
-    upload(){
-        multer(multerOptions).single('photo');
-    }
-    async resize(req, res, next){
-        // Check if the is no new file to resize
-        if (!req.file){
-            next();
-            return;
-        }
-        console.log(req.file);
     }
 }
 

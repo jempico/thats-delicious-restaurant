@@ -3,16 +3,16 @@ const store = require('../controllers/store');
 const router = express.Router();
 const storeController = require('../controllers/store');
 const { catchErrors} = require('../handlers/errorHandlers');
+const uploadFile = require("../middleware/uploadFile");
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
 router.get('/add', storeController.addStore);
 
-router.post('/add', 
-    //storeController.upload, 
-    //catchErrors(storeController.resize), 
-    catchErrors(storeController.createStore)
+router.post('/add', uploadFile, (req,res)=>{
+    res.send('Uploaded file')
+}
 );
 
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
