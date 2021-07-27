@@ -1,6 +1,15 @@
 ## _Before continuing_
 This is a work in progress project. Some feature are still in progress. Thanks!
 
+## That's delicious!
+This is a project created by going through Wes Bos's [Learn Node](https://learnnode.com/) course.
+
+In this course we built a 'yelp-like' restaurant application which users can search, review and curate their favorite restaurants from anywhere. 
+
+The app consumes Google Maps API to allow for autocompletion in the register form and geo-location.
+
+It touches many of today's application needs such as user authentication, database storage (using MongoDB, error handling, file upload and image resizing.
+
 ## Stack
 
 - NodeJS
@@ -17,7 +26,7 @@ This is a work in progress project. Some feature are still in progress. Thanks!
 - Error handling using middlerare.
 - Flash messages
 - Using Mongoose Hooks
-- Using Mixins
+- Webpack Bundling
 - Google Maps API Autocomplete
 
 ## Sample Data
