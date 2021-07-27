@@ -18,7 +18,7 @@ class storeController {
     async getStores(req,res){
         //1. Query the database for a list of all stores
         const stores = await Store.find();
-        console.log(stores);
+        console.log('This is working');
         res.render('stores', {title: 'Stores', stores})
     }
     async editStore(req,res){
@@ -27,13 +27,18 @@ class storeController {
         res.render('editStore', {title: 'Edit Store', store})
     }
     async updateStore(req,res){
+        //Set the location type to 'Point' regardless of updates 
+        req.body.location.type = 'Point';
         const store = await Store.findOneAndUpdate({_id: req.params.id}, req.body, {
             new: true, //return the new store instead of the old one
             runValidators: true //to validate the new data against the model's schema and avoid empty name and description.
         })
         req.flash('success', `Succesfully updated <strong>${store.name}</strong>. <a href="/stores/${store.slug}">View Store </a>`);
         res.status(200).redirect(`/stores/${store._id}/edit`);
-
+    }
+    async deleteAll(req,res){
+        await Store.deleteAll();
+        console.log('All deleted')
     }
 }
 
