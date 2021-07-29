@@ -40,12 +40,18 @@ const storeSchema = new Schema({
 });
 
 //Pre Hook for generating a custom slug whenever a new store is created
-storeSchema.pre('save', function(next){
+storeSchema.pre('save', async function(next){
     if (!this.isModified('name')) {
         next(); //if the name is not modified, skip it
         return; //stop this function from running
     }
     this.slug = slug(this.name);
+    //To fin other stores that have same 'slug', 'slug-1', 'slug-2'...
+    const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
+    const storesWithSlug = await this.constructor.find({slug: slugRegEx})
+    if(storesWithSlug.length) {
+        this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
+    }   
     next(); 
     // TODO make more resiliant so slugs are unique
 })
