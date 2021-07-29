@@ -45,9 +45,14 @@ class storeController {
         if(!store) return next();
         else res.render('store', {store, title: store.name});
     }
+    async getStoresByTag(req,res){
+        const tags = await Store.getTagsList();
+        const tag = req.params.tag;
+        console.log(tags);
+        res.render('tags', {tags, tag, title: 'Tags'});
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
-        console.log('All deleted')
     }
 }
 

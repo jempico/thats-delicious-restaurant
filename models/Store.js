@@ -56,5 +56,13 @@ storeSchema.pre('save', async function(next){
     // TODO make more resiliant so slugs are unique
 })
 
+storeSchema.statics.getTagsList = function(){
+    return this.aggregate([
+        { $unwind: '$tags' }, //> Returns a list of documents where each document is asigned to 1 tag, meaning that a restaurant with 3 tags is included 3 times.
+        { $group: { _id: '$tags', count: { $sum: 1}}}, //> groups the previous list by tag, and adds a property of count with the sum.
+        { $sort: { count: -1}} //> Order more to less
+    ]);
+}
+
 module.exports = mongoose.model('Store', storeSchema);
 

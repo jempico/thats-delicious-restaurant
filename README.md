@@ -25,10 +25,10 @@ It touches many of today's application needs such as user authentication, databa
 - Setting Cookie Parser and sessions
 - Error handling using middlerare.
 - Flash messages
-- Using Mongoose Hooks
+- Using Mongoose Hooks and static methods.
+- MongoDB Aggregations
 - Uploading/resizing files using Multer and Jimp
 - Webpack Bundling
-- Google Maps API Autocomplete
 
 ## Sample Data
 

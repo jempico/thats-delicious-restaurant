@@ -14,4 +14,8 @@ router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 router.post('/add/:id', uploadFile, catchErrors(storeController.updateStore));
 router.delete('/stores', catchErrors(storeController.deleteAll));
 router.get('/store/:slug', catchErrors(storeController.getStorebySlug))
+router.get('/tags', catchErrors(storeController.getStoresByTag));
+router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
+
+
 module.exports = router;
