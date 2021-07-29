@@ -46,10 +46,16 @@ class storeController {
         else res.render('store', {store, title: store.name});
     }
     async getStoresByTag(req,res){
-        const tags = await Store.getTagsList();
         const tag = req.params.tag;
+        const tagQuery = tag || { $exists: true}; // > If there's no tag specified as a parameter, return anything with a tag.
+        const tagsPromise = Store.getTagsList();
+        const storesPromise = Store.find({ tags: tagQuery});
+        // Awaiting both promises to resolve and destructuring into 2 variables.
+        const [tags, stores] = await Promise.all([tagsPromise, storesPromise]);
         console.log(tags);
-        res.render('tags', {tags, tag, title: 'Tags'});
+        console.log(stores);
+
+        res.render('tags', {tags, tag, title: 'Tags', stores});
     }
     async deleteAll(req,res){
         await Store.deleteAll();
