@@ -8,6 +8,9 @@ mixin storeForm(store = {} )
         //- Image upload
         label(for="photo") Photo 
             input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+            //- Updating cover image with the one uploaded
+            if store.photo
+                img(src=`public/uploads/${store.photo}`, alt=store.name width=200)
         //- Address, lng and lat
         label(for="address") Address
         input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))

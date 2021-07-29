@@ -17,6 +17,7 @@ const storeSchema = new Schema({
         maxLength: 500,
 
     },
+    photo: String,
     tags: [String],
     created: {
         type: Date,
@@ -35,7 +36,7 @@ const storeSchema = new Schema({
             type: String,
             required: 'You must supply an address.'
         } 
-    }   
+    }
 });
 
 //Pre Hook for generating a custom slug whenever a new store is created
