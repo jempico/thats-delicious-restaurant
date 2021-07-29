@@ -9,10 +9,9 @@ const uploadFile = require("../middleware/uploadFile");
 router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
 router.get('/add', storeController.addStore);
-
 router.post('/add', uploadFile, catchErrors(storeController.createStore));
-
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 router.post('/add/:id', uploadFile, catchErrors(storeController.updateStore));
 router.delete('/stores', catchErrors(storeController.deleteAll));
+router.get('/store/:slug', catchErrors(storeController.getStorebySlug))
 module.exports = router;

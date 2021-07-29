@@ -39,6 +39,12 @@ class storeController {
         req.flash('success', `Succesfully updated <strong>${store.name}</strong>. <a href="/stores/${store.slug}">View Store </a>`);
         res.status(200).redirect(`/stores/${store._id}/edit`);
     }
+    async getStorebySlug(req,res,next){
+        const store = await Store.findOne({slug: req.params.slug});
+        //If there is no store with the requested slug, pass onto the next function in app.js (render 404 Error handling)
+        if(!store) return next();
+        else res.render('store', {store, title: store.name});
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
         console.log('All deleted')
