@@ -16,8 +16,8 @@ exports.logout = (req, res) => {
 exports.isLoggedIn = (req, res, next) => {
     // Checking if the user is authenticated with Passport's method
     if(req.isAuthenticated()){
-        next();
-        return
-    } req.flash('error', 'Ooops you must be logged in');
+        return next();
+    } 
+    else req.flash('error', 'Ooops you must be logged in');
     res.redirect('/login');
 }
