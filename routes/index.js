@@ -4,6 +4,8 @@ const router = express.Router();
 const storeController = require('../controllers/store');
 const { catchErrors} = require('../handlers/errorHandlers');
 const uploadFile = require("../middleware/uploadFile");
+const userController = require('../controllers/user');
+const validateRegister = require("../middleware/validateRegister")
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
@@ -16,6 +18,9 @@ router.delete('/stores', catchErrors(storeController.deleteAll));
 router.get('/store/:slug', catchErrors(storeController.getStorebySlug))
 router.get('/tags', catchErrors(storeController.getStoresByTag));
 router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
+router.get('/login', userController.loginForm);
+router.get('/register', userController.registerForm);
+router.post('/register', validateRegister);
 
 
 module.exports = router;
