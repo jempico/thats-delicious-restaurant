@@ -10,7 +10,7 @@ The app consumes Google Maps API to allow for autocompletion in the register for
 
 For the front-end we've used Pug template engine.
 
-It touches many of today's application needs such as user creation and authentication, data validation, database storage, error handling, file upload, email sending and much more.
+It touches many of today's application needs such as user authentication, data validation, database storage, error handling, file upload, email sending and much more.
 
 ## Stack
 
@@ -30,6 +30,7 @@ It touches many of today's application needs such as user creation and authentic
 - Mongoose Hooks and static methods.
 - MongoDB Aggregations
 - Uploading/resizing files
+- Updating password flow
 - Webpack Bundling
 
 ## Sample Data
