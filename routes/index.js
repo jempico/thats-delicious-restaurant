@@ -11,7 +11,7 @@ const authController = require('../controllers/auth');
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
-router.get('/add', storeController.addStore);
+router.get('/add', authController.isLoggedIn, storeController.addStore);
 router.post('/add', uploadFile, catchErrors(storeController.createStore));
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 router.post('/add/:id', uploadFile, catchErrors(storeController.updateStore));

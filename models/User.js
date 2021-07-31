@@ -24,7 +24,8 @@ const userSchema = new Schema({
 userSchema.virtual('gravatar').get(function(){ //>Using a propper function to bind this.
     const hash = md5(this.email);
     return `https://gravatar.com/avatar/${hash}?s=200`;
-})
+});
+
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email'});  //>> Setting Passport username to "email" (instead of the default's 'username')
 userSchema.plugin(mongodbErrorHandler, )
 module.exports = mongoose.model('User', userSchema);
