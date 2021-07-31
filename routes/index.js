@@ -6,6 +6,7 @@ const { catchErrors} = require('../handlers/errorHandlers');
 const uploadFile = require("../middleware/uploadFile");
 const userController = require('../controllers/user');
 const validateRegister = require("../middleware/validateRegister")
+const authController = require('../controllers/auth');
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
@@ -20,7 +21,7 @@ router.get('/tags', catchErrors(storeController.getStoresByTag));
 router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);
-router.post('/register', validateRegister);
+router.post('/register', validateRegister, userController.register, authController.login);
 
 
 module.exports = router;
