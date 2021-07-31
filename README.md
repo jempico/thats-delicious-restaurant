@@ -8,7 +8,9 @@ In this course we built a 'yelp-like' restaurant application which users can sea
 
 The app consumes Google Maps API to allow for autocompletion in the register form and geo-location.
 
-It touches many of today's application needs such as user authentication, database storage (using MongoDB, error handling, file upload and image resizing.
+For the front-end we've used Pug template engine.
+
+It touches many of today's application needs such as user creation and authentication, data validation, database storage, error handling, file upload, email sending and much more.
 
 ## Stack
 
@@ -22,12 +24,12 @@ It touches many of today's application needs such as user authentication, databa
 - Webpack
 
 ## Things I've learned
-- Setting Cookie Parser and sessions
 - Error handling using middlerare.
 - Flash messages
-- Using Mongoose Hooks and static methods.
+- User Accounts, Data validation and Authentication
+- Mongoose Hooks and static methods.
 - MongoDB Aggregations
-- Uploading/resizing files using Multer and Jimp
+- Uploading/resizing files
 - Webpack Bundling
 
 ## Sample Data
