@@ -19,8 +19,12 @@ const userSchema = new Schema({
         type: String,
         required: 'Plase suplly a name',
         trim: true
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 })
+
+
 userSchema.virtual('gravatar').get(function(){ //>Using a propper function to bind this.
     const hash = md5(this.email);
     return `https://gravatar.com/avatar/${hash}?s=200`;

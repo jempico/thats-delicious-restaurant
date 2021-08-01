@@ -7,6 +7,7 @@ const uploadFile = require("../middleware/uploadFile");
 const userController = require('../controllers/user');
 const validateRegister = require("../middleware/validateRegister")
 const authController = require('../controllers/auth');
+const confirmPasswords = require("../middleware/confirmPasswords")
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
@@ -26,5 +27,8 @@ router.get('/logout', authController.logout);
 router.post('/login', authController.login);
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
+router.post('/login/forgot', catchErrors(authController.forgot));
+router.get('/account/reset/:token', catchErrors(authController.reset));
+router.post('/account/reset/:token', confirmPasswords, catchErrors(authController.update));
 
 module.exports = router;

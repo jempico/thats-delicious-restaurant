@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .inner
+        //Haven't specified action because data gets posted in the same route '/account/reset/${user.resetPasswordToken}'
+        form.form(method='POST') 
+            h2= title
+            pre=h.dump(user.resetPasswordToken)
+            label(for='password') Password
+            input(type='password' name='password')
+            label(for='password-confirm') Confirm Password 
+            input(type='password' name='password-confirm')
+            input(type='submit' value='Reset Password')
