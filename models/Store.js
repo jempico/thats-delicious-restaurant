@@ -36,6 +36,11 @@ const storeSchema = new Schema({
             type: String,
             required: 'You must supply an address.'
         } 
+    },
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: 'You must supply an`d author'
     }
 });
 

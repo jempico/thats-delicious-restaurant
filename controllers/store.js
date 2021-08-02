@@ -1,5 +1,11 @@
 const Store = require('../models/Store');
 
+const confirmOwner = (store,user) => {
+    if (!store.author.equals(user._id)) {
+        throw Error('You must own a store in order to edit it');
+    } 
+};
+
 class storeController {
     // Homepage
     homePage(req, res) {
@@ -10,11 +16,13 @@ class storeController {
         res.render('editStore', { title: 'Add Store'})
     }
     async createStore(req,res){
-        //TODO: Check if the store exists with the given name.
+        //First grab the current user's id and set it as the store's author.
+        req.body.author = req.user._id; 
+        //Then check if there's any photo uploaded and set it as the store's photo
         if (req.file) {
             req.body.photo = req.file.filename;
         } 
-        const store = await Store.create(req.body)
+        const store = await Store.create(req.body) //>With all the information above, create the store.
         req.flash('success', `Succesfully created ${store.name}. Care to leave a review?` );
         res.status(200).redirect(`/store/${store.slug}`);
     }
@@ -25,7 +33,8 @@ class storeController {
     }
     async editStore(req,res){
         const store = await Store.findById(req.params.id)
-        //2. TODO Confirm they are the owner of the store
+        //Confirm they are the owner of the store
+        confirmOwner(store, req.user);
         res.render('editStore', {title: 'Edit Store', store})
     }
     async updateStore(req,res){
@@ -40,7 +49,8 @@ class storeController {
         res.status(200).redirect(`/stores/${store._id}/edit`);
     }
     async getStorebySlug(req,res,next){
-        const store = await Store.findOne({slug: req.params.slug});
+        const store = await Store.findOne({slug: req.params.slug}).populate('author');
+        console.log(store);
         //If there is no store with the requested slug, pass onto the next function in app.js (render 404 Error handling)
         if(!store) return next();
         else res.render('store', {store, title: store.name});
