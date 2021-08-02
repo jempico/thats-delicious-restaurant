@@ -13,9 +13,10 @@ const transport = nodemailer.createTransport({
     }
   });
 
+// This function converts pug file into html and inlines CSS so that is propperly read by all email clients.
 const generateHTML = (filename, options = {})=> {
-    const html = pug.renderFile(`${__dirname}/../views/email/${filename}.pug`, options);
-    const inlined = juice(html)
+    const html = pug.renderFile(`${__dirname}/../views/email/${filename}.pug`, options); //> Looks for pug file to render
+    const inlined = juice(html) //> CSS Inliner conversion
     return inlined;
 }
 exports.send = async(options) => {
