@@ -86,6 +86,22 @@ class storeController {
         res.json(stores);
         
     }
+    async mapStores(req, res) {
+        const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
+        const q = {
+            location: {
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates
+                    },
+                    $maxDistance: 10000
+                }
+            }
+        }
+        const stores = await Store.find(q).select('slug name description location').limit(10);
+        res.json(stores);
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
     }

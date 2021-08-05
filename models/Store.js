@@ -50,6 +50,10 @@ storeSchema.index({
     description: 'text'
 });
 
+storeSchema.index({
+    location: '2dsphere'
+})
+
 //Pre Hook for generating a custom slug whenever a new store is created
 storeSchema.pre('save', async function(next){
     if (!this.isModified('name')) {
