@@ -102,6 +102,9 @@ class storeController {
         const stores = await Store.find(q).select('slug name description location').limit(10);
         res.json(stores);
     }
+    async mapPage(req,res){
+        res.render('map', {title: 'Map'})
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
     }
