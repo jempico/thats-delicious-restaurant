@@ -44,6 +44,12 @@ const storeSchema = new Schema({
     }
 });
 
+//Define our indexes
+storeSchema.index({
+    name: 'text',
+    description: 'text'
+});
+
 //Pre Hook for generating a custom slug whenever a new store is created
 storeSchema.pre('save', async function(next){
     if (!this.isModified('name')) {

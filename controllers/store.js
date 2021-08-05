@@ -67,9 +67,29 @@ class storeController {
 
         res.render('tags', {tags, tag, title: 'Tags', stores});
     }
+    async searchStores(req,res) {
+        const stores = await Store
+        // First find stores that match
+        .find({
+            $text: {
+                $search: req.query.q
+            }
+        }, {
+            score: { $meta: 'textScore'}
+        })
+        // Sort them by textScore
+        .sort({
+            score: { $meta: 'textScore'}
+        })
+        // Limit to only 5 results
+        .limit(5);
+        res.json(stores);
+        
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
     }
+    
 }
 
 module.exports = new storeController;

@@ -29,7 +29,7 @@ It touches many of today's application needs such as user authentication, data v
 - Flash messages
 - User Accounts, Data validation and Authentication
 - Mongoose Hooks and static methods.
-- MongoDB Aggregations
+- MongoDB Aggregations, Indexes
 - Uploading/resizing files
 - Password reset flow
 - Webpack Bundling
