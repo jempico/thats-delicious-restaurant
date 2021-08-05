@@ -8,6 +8,7 @@ const userController = require('../controllers/user');
 const validateRegister = require("../middleware/validateRegister")
 const authController = require('../controllers/auth');
 const confirmPasswords = require("../middleware/confirmPasswords")
+const reviewController = require('../controllers/review');
 
 // Do work here
 router.get('/', catchErrors(storeController.getStores));
@@ -31,6 +32,7 @@ router.post('/login/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', catchErrors(authController.reset));
 router.post('/account/reset/:token', confirmPasswords, catchErrors(authController.update));
 router.get('/map', storeController.mapPage);
+router.post('/reviews/:id', authController.isLoggedIn, catchErrors(reviewController.addReview));
 /*
 API
 */
