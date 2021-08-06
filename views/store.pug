@@ -1,6 +1,7 @@
 extends layout 
 
 include mixins/_reviewForm
+include mixins/_review
 
 block content
     .single
@@ -21,3 +22,8 @@ block content
                             span.tag__text #{tag}  
         if user
             +reviewForm(store)
+        if reviews 
+            .reviews 
+                each review in reviews 
+                    .review 
+                        +review(review)

@@ -1,4 +1,5 @@
 const Store = require('../models/Store');
+const Reviews = require('../models/Review');
 
 const confirmOwner = (store,user) => {
     if (!store.author.equals(user._id)) {
@@ -50,10 +51,11 @@ class storeController {
     }
     async getStorebySlug(req,res,next){
         const store = await Store.findOne({slug: req.params.slug}).populate('author');
-        console.log(store);
+        const reviews = await Reviews.find({store: store._id}).populate('author').select('text rating author');
+        console.log(reviews);
         //If there is no store with the requested slug, pass onto the next function in app.js (render 404 Error handling)
         if(!store) return next();
-        else res.render('store', {store, title: store.name});
+        else res.render('store', {store, title: store.name, reviews});
     }
     async getStoresByTag(req,res){
         const tag = req.params.tag;
