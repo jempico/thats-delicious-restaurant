@@ -107,6 +107,12 @@ class storeController {
     async mapPage(req,res){
         res.render('map', {title: 'Map'})
     }
+    async getTopStores(req, res){
+        const stores = await Store.getTopStores();
+        res.render('topStores', {stores, title: 'Top Stores!'})
+        console.log(stores);
+        
+    }
     async deleteAll(req,res){
         await Store.deleteAll();
     }

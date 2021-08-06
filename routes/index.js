@@ -33,6 +33,7 @@ router.get('/account/reset/:token', catchErrors(authController.reset));
 router.post('/account/reset/:token', confirmPasswords, catchErrors(authController.update));
 router.get('/map', storeController.mapPage);
 router.post('/reviews/:id', authController.isLoggedIn, catchErrors(reviewController.addReview));
+router.get('/top', catchErrors(storeController.getTopStores));
 /*
 API
 */

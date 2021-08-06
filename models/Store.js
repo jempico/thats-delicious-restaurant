@@ -79,5 +79,16 @@ storeSchema.statics.getTagsList = function(){
     ]);
 }
 
+storeSchema.statics.getTopStores = function(){
+    return this.aggregate([
+       // Lookup stores and populate their reviews
+       // filter for only items that have 2 or more reviews
+       // Add the average reviews field
+       // sort it by our own field, highest reviews first
+       // limit to 10
+
+    ]);
+}
+
 module.exports = mongoose.model('Store', storeSchema);
 
