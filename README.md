@@ -6,8 +6,6 @@ This is a project created by going through Wes Bos's [Learn Node](https://learnn
 
 In this course we built a 'yelp-like' restaurant application which users can search, review and curate their favorite restaurants from anywhere. 
 
-The app consumes Google Maps API to allow for autocompletion in the register form and geo-location.
-
 For the front-end we've used Pug template engine.
 
 It touches many of today's application needs such as user authentication, data validation, database storage, error handling, file upload, email sending and much more.
@@ -17,7 +15,6 @@ It touches many of today's application needs such as user authentication, data v
 - NodeJS
 - Express
 - MongoDB
-- Google Maps API
 - Pug
 - Sass
 - Passport
@@ -30,8 +27,9 @@ It touches many of today's application needs such as user authentication, data v
 - User Accounts, Data validation and Authentication
 - Mongoose Hooks and static methods.
 - MongoDB Aggregations, Indexes
-- Uploading/resizing files
+- Email verification flow
 - Password reset flow
+- Uploading/resizing files
 - Pagination
 - Webpack Bundling
 
