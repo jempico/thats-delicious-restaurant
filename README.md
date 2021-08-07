@@ -10,6 +10,9 @@ For the front-end we've used Pug template engine.
 
 It touches many of today's application needs such as user authentication, data validation, database storage, error handling, file upload, email sending and much more.
 
+<img width="1269" alt="Screenshot 2021-08-07 at 17 10 48" src="https://user-images.githubusercontent.com/25463174/128604993-d9d583f0-4413-478c-b29e-9b72ab3f9d50.png">
+
+
 ## Stack
 
 - NodeJS
