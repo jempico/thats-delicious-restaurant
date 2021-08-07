@@ -32,6 +32,7 @@ It touches many of today's application needs such as user authentication, data v
 - MongoDB Aggregations, Indexes
 - Uploading/resizing files
 - Password reset flow
+- Pagination
 - Webpack Bundling
 
 ## Sample Data

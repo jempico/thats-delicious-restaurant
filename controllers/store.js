@@ -28,9 +28,21 @@ class storeController {
         res.status(200).redirect(`/store/${store.slug}`);
     }
     async getStores(req,res){
-        //1. Query the database for a list of all stores
-        const stores = await Store.find();
-        res.render('stores', {title: 'Stores', stores})
+        //1. Set pagination
+        const page = req.params.page || 1;
+        const limit = 4;
+        const skip = (page * limit) - limit;
+
+        //2. Query the database for a list of all stores
+        const storesPromise = Store.find().skip(skip).limit(limit).sort({ created: 'desc'});
+        const countPromise = Store.count();
+        
+        const [stores, count] = await Promise.all([storesPromise, countPromise])
+        const pages = Math.ceil(count/limit);
+        if (!stores.length && skip) {
+            req.flash('info', `Hey! This page doesn't exist.`)
+        }
+        res.render('stores', {title: 'Stores', stores, page, pages, count})
     }
     async editStore(req,res){
         const store = await Store.findById(req.params.id)
@@ -52,7 +64,7 @@ class storeController {
     async getStorebySlug(req,res,next){
         const store = await Store.findOne({slug: req.params.slug}).populate('author');
         const reviews = await Reviews.find({store: store._id}).populate('author').select('text rating author');
-        console.log(reviews);
+
         //If there is no store with the requested slug, pass onto the next function in app.js (render 404 Error handling)
         if(!store) return next();
         else res.render('store', {store, title: store.name, reviews});
