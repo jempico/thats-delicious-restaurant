@@ -82,11 +82,35 @@ storeSchema.statics.getTagsList = function(){
 storeSchema.statics.getTopStores = function(){
     return this.aggregate([
        // Lookup stores and populate their reviews
+       {
+        $lookup: {
+            from: 'reviews',
+            localField: '_id',
+            foreignField: 'store',
+            as: 'reviews'
+        }
+      }, 
        // filter for only items that have 2 or more reviews
-       // Add the average reviews field
-       // sort it by our own field, highest reviews first
+        {
+          $match: { 'reviews.1': { $exists: true}}
+      },
+       // Add the average reviews field and select photo, name, reviews and avgRating fields.
+        {
+        $project: {
+          photo: '$$ROOT.photo',
+          name: '$$ROOT.name',
+          reviews: '$$ROOT.reviews',
+          avgRating: { $avg: '$reviews.rating' } 
+        }
+      },
+       // sort it by our avg field, highest reviews first
+        {
+            $sort: {avgRating: -1}
+        },
        // limit to 10
-
+        {
+            $limit: 10
+        }
     ]);
 }
 

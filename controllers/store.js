@@ -109,8 +109,9 @@ class storeController {
     }
     async getTopStores(req, res){
         const stores = await Store.getTopStores();
-        res.render('topStores', {stores, title: 'Top Stores!'})
+        //res.render('topStores', {stores, title: 'Top Stores!'})
         console.log(stores);
+        res.json(stores);
         
     }
     async deleteAll(req,res){
